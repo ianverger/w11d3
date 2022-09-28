@@ -1,11 +1,20 @@
 import { useState, useEffect } from 'react';
 
 function CartItem({ item }) {
-  const [count, setCount] = useState(item.count);
+  let [count, setCount] = useState(item.count);
 
   useEffect(() => {
     setCount(item.count);
   }, [item.count]);
+
+
+  function incCount() {
+    setCount(count + 1)
+  }
+
+  function decCount() {
+    setCount(count - 1)
+  }
 
   return (
     <li className="cart-item">
@@ -15,12 +24,12 @@ function CartItem({ item }) {
           type="number"
           value={count}
         />
-        <button
+        <button onClick={incCount}
           className="cart-item-button"
         >
           +
         </button>
-        <button
+        <button onClick={decCount}
           className="cart-item-button"
         >
           -
